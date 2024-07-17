@@ -35,10 +35,7 @@ class UInt32 {
 
   BigInt get value => _value;
 
-  @override
-  String toString() => _value.toString();
-
-  // UInt32 Operators
+  int get intValue => _value.toInt();
 
   UInt32 operator +(dynamic other) {
     var result = _value + _bigInt(other);
@@ -107,6 +104,14 @@ class UInt32 {
     return UInt32.fromBigInt(result);
   }
 
+  bool operator <(UInt32 other) => _value < other._value;
+
+  bool operator <=(UInt32 other) => _value <= other._value;
+
+  bool operator >(UInt32 other) => _value > other._value;
+
+  bool operator >=(UInt32 other) => _value >= other._value;
+
   @override
   bool operator ==(Object other) {
     if (other is UInt32) {
@@ -115,13 +120,8 @@ class UInt32 {
     return false;
   }
 
-  bool operator <(UInt32 other) => _value < other._value;
-
-  bool operator <=(UInt32 other) => _value <= other._value;
-
-  bool operator >(UInt32 other) => _value > other._value;
-
-  bool operator >=(UInt32 other) => _value >= other._value;
+  @override
+  String toString() => _value.toString();
 
   @override
   int get hashCode => _value.hashCode;
