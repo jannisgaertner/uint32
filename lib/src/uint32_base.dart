@@ -104,20 +104,21 @@ class UInt32 {
     return UInt32.fromBigInt(result);
   }
 
-  bool operator <(UInt32 other) => _value < other._value;
+  bool operator <(dynamic other) => _value < _bigInt(other);
 
-  bool operator <=(UInt32 other) => _value <= other._value;
+  bool operator <=(dynamic other) => _value <= _bigInt(other);
 
-  bool operator >(UInt32 other) => _value > other._value;
+  bool operator >(dynamic other) => _value > _bigInt(other);
 
-  bool operator >=(UInt32 other) => _value >= other._value;
+  bool operator >=(dynamic other) => _value >= _bigInt(other);
 
   @override
   bool operator ==(Object other) {
-    if (other is UInt32) {
-      return _value == other._value;
+    try {
+      return _value == _bigInt(other);
+    } on ArgumentError catch (_) {
+      return false;
     }
-    return false;
   }
 
   @override
