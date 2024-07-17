@@ -21,33 +21,47 @@ class UInt32 {
     _value.toUnsigned(_bits);
   }
 
+  BigInt _bigInt(dynamic value) {
+    if (value is UInt32) {
+      return value._value;
+    } else if (value is BigInt) {
+      return value;
+    } else if (value is int) {
+      return BigInt.from(value);
+    } else {
+      throw ArgumentError('Value must be of type UInt32, BigInt or int');
+    }
+  }
+
   BigInt get value => _value;
 
   @override
   String toString() => _value.toString();
 
-  UInt32 operator +(UInt32 other) {
-    var result = _value + other._value;
+  // UInt32 Operators
+
+  UInt32 operator +(dynamic other) {
+    var result = _value + _bigInt(other);
     return UInt32.fromBigInt(result);
   }
 
-  UInt32 operator -(UInt32 other) {
-    var result = _value - other._value;
+  UInt32 operator -(dynamic other) {
+    var result = _value - _bigInt(other);
     return UInt32.fromBigInt(result);
   }
 
-  UInt32 operator *(UInt32 other) {
-    var result = _value * other._value;
+  UInt32 operator *(dynamic other) {
+    var result = _value * _bigInt(other);
     return UInt32.fromBigInt(result);
   }
 
-  UInt32 operator /(UInt32 other) {
-    var result = _value ~/ other._value;
+  UInt32 operator /(dynamic other) {
+    var result = _value ~/ _bigInt(other);
     return UInt32.fromBigInt(result);
   }
 
-  UInt32 operator %(UInt32 other) {
-    var result = _value % other._value;
+  UInt32 operator %(dynamic other) {
+    var result = _value % _bigInt(other);
     return UInt32.fromBigInt(result);
   }
 
