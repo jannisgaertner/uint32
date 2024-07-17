@@ -15,7 +15,9 @@ To start using the `UInt32` package, add it to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  uint32: ^1.0.0
+  uint32:
+    git:
+      url: https://github.com/jannisgaertner/uint32.git
 ```
 
 Then, run `pub get` to install the package.
